@@ -7,9 +7,10 @@ class User < ActiveRecord::Base
   has_many :articles, :dependent => :destroy
   has_many :comments, :dependent => :destroy
 
-  # @TODO remove this stub
-  def self.subscribed
-    User.all
+  scope :subscribed, -> { where(:is_subscribed => true) }
+
+  def can_update?(user)
+    user == self
   end
 
 end

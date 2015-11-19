@@ -55,6 +55,25 @@
   <%= yield %>
   <%= yield :form_errors %>
 
+  <div class="clearfix"></div>
+  <hr>
+
+  <div class="col-md-12 col-sm-12 col-xs-12">
+  <p>
+    <% if user_signed_in? %>
+      <% if current_user.is_subscribed? %>
+        You are subscribed to new articles.
+      <% else %>
+        You are NOT subscribed to new articles.
+      <% end %>
+      <%= form_for(current_user, remote: true, html: {class: 'update_subscribed'}) do |f| %>
+        <%= f.hidden_field :is_subscribed, :value => !current_user.is_subscribed? %>
+        <%= f.submit (current_user.is_subscribed? ? 'Unsubscribe!' : 'Subscribe!'), :class => 'btn btn-warning' %>
+      <% end %>
+  <% end %>
+  </p>
+  </div>
+
 </div>
 
 </body>
