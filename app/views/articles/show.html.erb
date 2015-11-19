@@ -17,12 +17,16 @@
                 <%= render :partial => 'shared/comment', :locals => { :comment => comment } %>
             <% } %>
           </ul>
+
+          <% if user_signed_in? %>
           <%= form_for(Comment.new, remote: true, html: {class: ''}, id: 'new_comment') do |f| %>
               <%= f.hidden_field :commentable_id,   :value => @article.id %>
               <%= f.hidden_field :commentable_type, :value => @article.class.to_s %>
               <%= f.text_field :body, :class => 'form-control', :autocomplete => 'off' %>
               <%= f.submit 'Send!', :class => 'btn btn-success' %>
           <% end %>
+          <% end %>
+
         </div>
 
         <div class="clearfix"></div>

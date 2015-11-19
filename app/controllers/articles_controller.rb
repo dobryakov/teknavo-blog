@@ -1,8 +1,20 @@
 class ArticlesController < ApplicationController
   before_action :set_model, only: [:show, :edit, :update, :destroy]
+  before_action :require_authorize, only: [ :create ]
+
+  def create
+    @model = Article.new(permitted_params.merge(user: current_user))
+
+    respond_to do |format|
+      if @model.save
+        format.html { render :partial => 'shared/article', :locals => {:article => @model} }
+      end
+    end
+
+  end
 
   def index
-    @articles = Article.all.reverse_ordered
+    @articles = Article.all.ordered
   end
 
   def show

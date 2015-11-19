@@ -5,6 +5,6 @@ class Article < ActiveRecord::Base
   validates_presence_of :body
   validates_presence_of :user_id
 
-  scope :reverse_ordered, -> { order('created_at DESC') }
+  scope :ordered, -> { order('created_at ASC') }
 
 end

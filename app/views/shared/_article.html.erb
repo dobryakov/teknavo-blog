@@ -1,0 +1,16 @@
+<li>
+    <div>
+      <p>
+        <%= h article.user.email %> posted at <%= h article.created_at.strftime('%Y-%m-%d %H:%M') %>
+      </p>
+
+      <div><%= h markdown(article.body) %></div>
+      <p>
+        <%= link_to "#{article.comments.count} comments", article_path(article) %>
+      </p>
+    </div>
+
+    <div class="clearfix"></div>
+    <hr>
+
+</li>

@@ -1,9 +1,11 @@
-<div>
-  <p>
-    <%=h comment.user.email %> commented at <%=h comment.created_at.strftime('%Y-%m-%d %H:%M') %>
-  </p>
-  <p>
-    <%=h markdown(comment.body) %>
-  </p>
-  <hr>
-</div>
+<li>
+    <div>
+      <p>
+        <%=h comment.user.email %> commented at <%=h comment.created_at.strftime('%Y-%m-%d %H:%M') %>
+      </p>
+      <p>
+        <%=h markdown(comment.body) %>
+      </p>
+      <hr>
+    </div>
+</li>

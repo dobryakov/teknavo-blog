@@ -5,29 +5,30 @@
   </h1>
 </div>
 
-<% @articles.each{|article| %>
+<div class="col-lg-12">
+  <section class="box ">
+    <div class="content-body">
+      <div class="row">
 
-    <div class="col-lg-12">
-      <section class="box ">
-        <div class="content-body">
-          <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <ul id="articles">
+            <% @articles.each{|article| %>
 
-            <div class="col-md-12 col-sm-12 col-xs-12">
-              <p>
-                <%=h article.user.email %> posted at <%=h article.created_at.strftime('%Y-%m-%d %H:%M') %>
-              </p>
-              <div><%=h markdown(article.body) %></div>
-              <p>
-                <%= link_to "#{article.comments.count} comments", article_path(article) %>
-              </p>
-            </div>
+                <%= render :partial => 'shared/article', :locals => { :article => article } %>
 
-            <div class="clearfix"></div>
-            <hr>
+            <% } %>
+          </ul>
 
-          </div>
+          <% if user_signed_in? %>
+              <%= form_for(Article.new, remote: true, html: {class: ''}, id: 'new_article') do |f| %>
+                  <%= f.text_area :body, :class => 'form-control', :autocomplete => 'off' %>
+                  <%= f.submit 'Send!', :class => 'btn btn-success' %>
+              <% end %>
+          <% end %>
+
         </div>
-      </section>
-    </div>
 
-<% } %>
+      </div>
+    </div>
+  </section>
+</div>
