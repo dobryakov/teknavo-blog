@@ -43,5 +43,12 @@ group :development, :test do
   gem 'spring'
 end
 
+group :development do
+  gem "better_errors"
+  gem "hirb-unicode" # usage: require 'hirb'; Hirb.enable; https://github.com/cldwalker/hirb
+  gem 'minitest'
+  gem 'minitest-reporters'
+end
+
 gem 'devise'
 gem 'dotenv-rails' # https://github.com/bkeepers/dotenv
