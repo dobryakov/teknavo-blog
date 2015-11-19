@@ -8,6 +8,7 @@ $ ->
     #console.log(xhr)
     #console.log(settings)
     $('#articles').append(xhr)
+    $('article_body').val('')
   ).bind("ajax:error", (event, xhr, settings, exceptions) ->
     console.log(event)
     console.log(xhr)
