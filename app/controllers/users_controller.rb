@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_model, only: [:show, :edit, :update, :destroy]
+  before_action :set_model, only: [:show, :edit, :update, :destroy, :unsubscribe]
   before_action :require_authorize, only: [ :update ]
 
   def update
@@ -12,6 +12,15 @@ class UsersController < ApplicationController
     end
   end
 
+  def unsubscribe
+    user = @model
+    code = unsubscribe_params[:code]
+    unless user.nil?
+      user.update(:is_subscribed => false) if user.unsubscribe_code.to_s == code.to_s
+    end
+    redirect_to root_path
+  end
+
   private
 
   def set_model
@@ -20,6 +29,10 @@ class UsersController < ApplicationController
 
   def permitted_params
     params.require(:user).permit(:is_subscribed)
+  end
+
+  def unsubscribe_params
+    params.permit(:id, :code)
   end
 
 end

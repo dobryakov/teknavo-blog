@@ -13,4 +13,9 @@ class User < ActiveRecord::Base
     user == self
   end
 
+  def unsubscribe_code
+    # replace it with your favorite encryption method
+    "VERY-SECRET-CODE-#{id}"
+  end
+
 end

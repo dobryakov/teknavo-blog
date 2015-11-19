@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   resources :comments
   resources :users
 
+  get 'users/unsubscribe/:id/:code', :to => 'users#unsubscribe', :as => 'unsubscribe'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

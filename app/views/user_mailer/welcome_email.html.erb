@@ -9,7 +9,7 @@
   Look at <%= article_url(@article) %>
 </p>
 <p>
-  To unsubscribe, just follow this link: <%= @unsubscribe_url %>
+  To unsubscribe, just follow this link: <%= unsubscribe_url(id: @user.id, code: @user.unsubscribe_code) %>
 </p>
 <p>Thanks for joining and have a great day!</p>
 </body>
