@@ -12,24 +12,17 @@
           <p>
             Comments:
           </p>
-          <div id="comments">
+          <ul id="comments">
             <% @article.comments.each{|comment| %>
-                <div>
-                  <p>
-                    <%=h comment.user.email %> commented at <%=h comment.created_at.strftime('%Y-%m-%d %H:%M') %>
-                  </p>
-                  <p>
-                    <%=h markdown(comment.body) %>
-                  </p>
-                  <hr>
-                </div>
+                <%= render :partial => 'shared/comment', :locals => { :comment => comment } %>
             <% } %>
-            <%= form_for(Comment.new, remote: true, html: {class: ""}) do |f| %>
-                <%= f.label :body %><br>
-                <%= f.text_field :body, :class => 'form-control' %>
-                <%= f.submit 'Send!', :class => 'btn btn-success' %>
-            <% end %>
-          </div>
+          </ul>
+          <%= form_for(Comment.new, remote: true, html: {class: ''}, id: 'new_comment') do |f| %>
+              <%= f.hidden_field :commentable_id,   :value => @article.id %>
+              <%= f.hidden_field :commentable_type, :value => @article.class.to_s %>
+              <%= f.text_field :body, :class => 'form-control', :autocomplete => 'off' %>
+              <%= f.submit 'Send!', :class => 'btn btn-success' %>
+          <% end %>
         </div>
 
         <div class="clearfix"></div>

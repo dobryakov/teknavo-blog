@@ -17,6 +17,7 @@ class CommentTest < ActiveSupport::TestCase
     )
 
     assert comment.persisted?
+    assert comment.commentable_type.to_s == 'Article'
 
     article.reload
     assert article.comments.count == 1

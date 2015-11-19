@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20151119175249) do
     t.integer  "user_id"
     t.text     "body"
     t.integer  "commentable_id"
-    t.integer  "commentable_type"
+    t.string   "commentable_type"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
