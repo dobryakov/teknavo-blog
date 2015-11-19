@@ -5,10 +5,36 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
 </head>
 <body>
 
-<%= yield %>
+<div class="container">
+
+  <% unless notice.nil? %><div class="alert alert-success" role="alert"><p><%= notice %></p></div><% end %>
+  <% unless alert.nil? %><div class="alert alert-danger" role="alert"><p><%= alert %></p></div><% end %>
+
+  <p>
+    <% unless user_signed_in? %>
+        <%= link_to "Sign in with Google", user_omniauth_authorize_path(:google_oauth2) %>
+    <% else %>
+        Successfully logged as <%=h current_user.email %>
+    <% end %>
+  </p>
+
+  <%= yield %>
+  <%= yield :form_errors %>
+
+</div>
 
 </body>
 </html>

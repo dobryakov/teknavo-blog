@@ -1,0 +1,41 @@
+
+<div class="col-lg-12">
+  <section class="box ">
+    <div class="content-body">
+      <div class="row">
+
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <p>
+            <%=h @article.user.email %> posted at <%=h @article.created_at.strftime('%Y-%m-%d %H:%M') %>
+          </p>
+          <div><%=h markdown(@article.body) %></div>
+          <p>
+            Comments:
+          </p>
+          <div id="comments">
+            <% @article.comments.each{|comment| %>
+                <div>
+                  <p>
+                    <%=h comment.user.email %> commented at <%=h comment.created_at.strftime('%Y-%m-%d %H:%M') %>
+                  </p>
+                  <p>
+                    <%=h markdown(comment.body) %>
+                  </p>
+                  <hr>
+                </div>
+            <% } %>
+            <%= form_for(Comment.new, remote: true, html: {class: ""}) do |f| %>
+                <%= f.label :body %><br>
+                <%= f.text_field :body, :class => 'form-control' %>
+                <%= f.submit 'Send!', :class => 'btn btn-success' %>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="clearfix"></div>
+        <hr>
+
+      </div>
+    </div>
+  </section>
+</div>

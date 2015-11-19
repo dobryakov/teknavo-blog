@@ -52,3 +52,5 @@ end
 
 gem 'devise'
 gem 'dotenv-rails' # https://github.com/bkeepers/dotenv
+
+gem "redcarpet"
