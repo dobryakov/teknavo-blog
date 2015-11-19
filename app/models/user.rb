@@ -7,4 +7,9 @@ class User < ActiveRecord::Base
   has_many :articles, :dependent => :destroy
   has_many :comments, :dependent => :destroy
 
+  # @TODO remove this stub
+  def self.subscribed
+    User.all
+  end
+
 end

@@ -27,3 +27,6 @@ module TeknavoBlog
 
   end
 end
+
+require 'project_events'
+require 'project_event'
