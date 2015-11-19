@@ -18,20 +18,39 @@
 </head>
 <body>
 
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="<%=root_path%>">Teknavo blog</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <div id="header_buttons_area">
+
+      <p>
+        <% unless user_signed_in? %>
+            <%= link_to 'Sign in', new_user_session_path,      :class => 'btn btn-success' %>
+            <%= link_to 'Sign up', new_user_registration_path, :class => 'btn btn-success' %>
+        <% else %>
+            Successfully logged as <%=h current_user.email %>
+            <%= link_to 'Logout', destroy_user_session_path, :method => "DELETE", :class => 'btn btn-default' %>
+        <% end %>
+      </p>
+
+      </div>
+    </div>
+  </div>
+</nav>
+
 <div class="container">
 
   <% unless notice.nil? %><div class="alert alert-success" role="alert"><p><%= notice %></p></div><% end %>
   <% unless alert.nil? %><div class="alert alert-danger"   role="alert"><p><%= alert %></p></div><% end %>
-
-  <p>
-    <% unless user_signed_in? %>
-        <%= link_to 'Sign in', new_user_session_path,      :class => 'btn btn-success' %>
-        <%= link_to 'Sign up', new_user_registration_path, :class => 'btn btn-success' %>
-    <% else %>
-        Successfully logged as <%=h current_user.email %>.
-        <%= link_to 'Logout', destroy_user_session_path, :method => "DELETE", :class => 'btn btn-default' %>
-    <% end %>
-  </p>
 
   <%= yield %>
   <%= yield :form_errors %>
