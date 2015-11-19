@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/dobryakov/teknavo-blog.svg?branch=master)](https://travis-ci.org/dobryakov/teknavo-blog)
+[![Code Climate](https://codeclimate.com/github/dobryakov/teknavo-blog/badges/gpa.svg)](https://codeclimate.com/github/dobryakov/teknavo-blog)
+
 About
 -----------------
 
